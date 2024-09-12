@@ -13,14 +13,14 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 #     return render(request, "index.html", context=data) 
 
 def index(request):
- return render(request, "firstapp/home.html")
+ return render(request, "firstapp/index.html")
  
 
-def about(request):
-    return HttpResponse("<h2>About</h2>")
+#def about(request):
+#    return HttpResponse("<h2>About</h2>")
 
-def contact(request):
-    return HttpResponseRedirect("/about")
+#def contact(request):
+#    return HttpResponseRedirect("/about")
 
 def details(request):
     return HttpResponsePermanentRedirect("/")
