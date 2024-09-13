@@ -24,6 +24,8 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name="firstapp/contact.html", 
                                           extra_context={"work": "Разработка программных продуктов"})),
     path('details/', views.details),
-    path('products/<int:productid>/', views.products),
-    path('users/', views.users)
+    path('products/', views.products),   
+    path('products/<int:productid>/', views.products),     
+    path('users/', views.users), 
+    path('users/<int:id>/<str:name>/', views.users)
 ]
