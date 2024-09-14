@@ -12,9 +12,16 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanen
 #     data = {"header": header, "langs": langs, "user": user, "address": addr}     
 #     return render(request, "index.html", context=data) 
 
-def index(request):
- return render(request, "firstapp/index.html")
+# def index(request):
+#  return render(request, "firstapp/index.html")
  
+# def index(request):
+#     data = {"age": 66}
+#     return render(request, "firstapp/index.html", context=data)
+
+def index(request):
+ cat = ["Ноутбуки", "Принтеры", "Сканеры", "Диски", "Шнуры"]
+ return render(request, "firstapp/index.html", context={"cat": cat})
 
 #def about(request):
 #    return HttpResponse("<h2>About</h2>")
