@@ -1,28 +1,7 @@
 from django import forms
-
-
 class UserForm(forms.Form):
-    file = forms.ImageField(label="Изображение")
-    date = forms.DateField(label="Введите дату")
-    time = forms.DateField(label="Введите время")
-    date_time = forms.DateTimeField(label="Введите дату и время")
-    time_delta = forms.DurationField(label="Введите промежуток времени")
-    date_time2 = forms.SplitDateTimeField(label="Введите дату и время (раздельно)")
-    num = forms.IntegerField(label="Введите целое число")
-    num2 = forms.DecimalField(label="Введите десятичное число")
-    num3 = forms.FloatField(label="Введите число")
-    ling = forms.ChoiceField(label="Выберите язык",
-                             choices=((1, "Английский"),
-                                      (2, "Немецкий"),
-                                      (3, "Французский")))
-    country = forms.MultipleChoiceField(label="Выберите страны",
-                                        choices=((1, "Англия"),
-                                                 (2, "Германия"),
-                                                 (3, "Испания"),
-                                                 (4, "Россия")))
-    city = forms.TypedMultipleChoiceField(label="Выберите город",
-                                          empty_value=None,
-                                          choices=((1, "Москва"),
-                                                   (2, "Воронеж"),
-                                                   (3, "Курск"),
-                                                   (4, "Томск")))
+    name = forms.CharField(label="Имя клиента", min_length=3)
+    age = forms.IntegerField(label="Возраст клиента", min_value=1, max_value=100)
+    weight = forms.DecimalField(min_value=3, max_value=200, decimal_places=2)
+    email = forms.EmailField(label="Электронный адрес")
+    reklama = forms.BooleanField(label="Согласны получать рекламу", required=False)

@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Форма Django!</title>
-    </head>
-    <body>
-        <form method="POST">
-            {% csrf_token %}
-            <table>
-            {{ form }}
-            </table>
-            <input type="submit" value="Оправить" >
-        </form>
-    </body>
+<head>
+ <meta charset="utf-8">
+ <title>Форма Django!</title>
+ <style>
+ .alert{color:red}
+ .form-group{margin: 10px 0;}
+ .form-group input{width:250px;height: 25px;border-radius:10px;}
+ </style>
+</head>
+<body>
+<h2>Стилизация полей</h2>
+ <form method="POST" novalidate>
+ {% csrf_token %}
+ <div class="form-group">
+ {% for field in form %}
+ <div>{{field.label_tag}}</div>
+ <div>{{field}}</div>
+ {% if field.errors%}
+ {% for error in field.errors %}
+ <div class="alert alert-danger">
+ {{error}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+    </div>
+ <input type="submit" value="Оправить"
+ </form>
+</body>
 </html>
-
