@@ -41,17 +41,17 @@ def create(request):
         author.save()
         return HttpResponseRedirect("/authors_add/")
     
-    def edit1(request, id):
-        author = Author.objects.get(id=id)
-        if request.method == "POST":
-            author.first_name = request.POST.get("first_name")
-            author.last_name = request.POST.get("last_name")
-            author.date_of_birth = request.POST.get("date_of_birth")
-            author.date_of_death = request.POST.get("date_of_death")
-            author.save()
-            return HttpResponseRedirect("/authors_add/")
-        else:
-            return render(request, "edit1.html", {"author": author})
+def edit1(request, id):
+    author = Author.objects.get(id=id)
+    if request.method == "POST":
+        author.first_name = request.POST.get("first_name")
+        author.last_name = request.POST.get("last_name")
+        author.date_of_birth = request.POST.get("date_of_birth")
+        author.date_of_death = request.POST.get("date_of_death")
+        author.save()
+        return HttpResponseRedirect("/authors_add/")
+    else:
+        return render(request, "edit1.html", {"author": author})
 
 def delete(request, id):
     try:
