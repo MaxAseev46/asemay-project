@@ -1,13 +1,22 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <title>Привет Django</title> 
-</head> 
-<body> 
-       <h1>Контактные данные компании</h1> 
-       <h3>{{ work }}</h3> 
-       <h3>Адрес: г. Москва, ул. Короленко, д. 24</h3> 
-       <h4>templates/firstapp/contact.html</h4> 
-</body> 
-</html> 
+{% extends "firstapp/base.html" %}
+{% block title %}Контакты{% endblock title %}
+{% block header %}Контактные данные{% endblock header %}
+{% block content %}
+ Компания "Интеллектуальные информационные системы"
+ <div class="container-fluid text-center my-2 border border-3">
+ <div class="row ">
+ <div class="col-sm-6 ">
+ <h3>Адрес</h3>
+ <p>г. Москва, ул. Короленко, д. 24</p>
+ </div>
+ <div class="col-sm-3 ">
+ <h3>Телефон</h3>
+ <p>+7 999 999 99</p>
+ </div>
+ <div class="col-sm-3 ">
+ <h3>e-mail</h3>
+ <p>iis@yandex.ru</p>
+ </div>
+ </div>
+ </div>
+{% endblock content %}

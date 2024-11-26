@@ -1,37 +1,22 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <meta charset="utf-8" /> 
-    <title>Модели в Django</title> 
-</head> 
-<body class="container"> 
-    <form method="POST" action="create/"> 
-        {% csrf_token %} 
-        <p> 
-            <label>Введите имя</label><br> 
-            <input type="text" name="name" /> 
-        </p> 
-        <p> 
-            <label>Введите возраст</label><br> 
-            <input type="number" name="age" /> 
-        </p> 
-        <input type="submit" value="Сохранить" > 
-    </form> 
-    {% if people.count > 0 %} 
-    <h2>Список пользователей</h2> 
-    <table> 
-        <thead> 
-           <th>Id</th><th>Имя</th><th>Возраст</th><th></th>        </thead> 
-        {% for person in people %} 
-        <tr> 
-            <td>{{ person.id }}</td> 
-            <td>{{ person.name }}</td> 
-            <td>{{ person.age }}</td> 
-            <td><a href="edit/{{person.id}}">Изменить</a> | 
-                <a href="delete/{{person.id}}">Удалить</a></td> 
-        </tr> 
-        {% endfor %} 
-    </table> 
-    {% endif %} 
-</body> 
-</html> 
+{% extends "firstapp/base.html" %}
+{% block title %}Главная страница{% endblock title %}
+{% block header %}Это главная страница сайта - index.html.{% endblock header %}
+{% block content%}
+ Месяцы (поквартально)
+ <div class="container-fluid my-2 text-start">
+ <div class="row">
+ <div class="col-6 text-end">
+ {% for kv in my_kv %}
+ <div>{{ kv }}</div>
+ {% endfor %}
+ </div>
+ <div class="col-6">
+ <div class="row">
+ {% for month in my_month %}
+ <div class="col-4">{{ month }}</div>
+ {% endfor %}
+ </div>
+ </div>
+ </div>
+ </div>
+{% endblock content %}
