@@ -5,13 +5,8 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, HttpRes
 # Create your views here.
 
 def index(request):
-    my_kv = ['I квартал ->', 'II квартал ->', 'III квартал->',
-    'IV квартал->']
-    my_month = ['Январь', 'Февраль', 'Март',
-    'Апрель', 'Май', 'Июнь',
-    'Июль', 'Август', 'Сентябрь',
-    'Октябрь', 'Ноябрь', 'Декабрь']
-    context = {'my_month': my_month, 'my_kv': my_kv}
+    my_text = 'Изучаем формы Django'
+    context = {'my_text': my_text}
     return render(request, "firstapp/index.html", context)
 
 def about(request):
@@ -19,6 +14,19 @@ def about(request):
 
 def contact(request):
     return render(request, "firstapp/contact.html")
+
+def my_form(request):
+    if request.method == "POST":
+        userform = UserForm(request.POST)
+        if userform.is_valid():
+            name = request.POST.get("name") # получить значение поля Имя
+            age = request.POST.get("age") # получить значение поля Возраст
+            output = "<h2>Пользователь</h2><h3>Имя - {0}," \
+                " Возраст – {1} </h3 >".format(name, age)
+            return HttpResponse(output)
+    userform = UserForm()
+    return render(request, "firstapp/my_form.html", {"form": userform})
+
 
 def details(request):
     return HttpResponsePermanentRedirect("/")
