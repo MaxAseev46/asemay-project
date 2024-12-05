@@ -32,7 +32,7 @@ class Author(models.Model):
     first_name = models.CharField(max_length=100, help_text="Введите имя автора", verbose_name="Имя автора")
     last_name = models.CharField(max_length=100, help_text="Введите фамилию автора", verbose_name="Фамилия автора")
     date_of_birth = models.DateField(help_text="Введите дату рождения", verbose_name="Дата рождения", null=True, blank=True)
-    about = models.TextField(help_text="Введите сведения об авторе", verbose_name="Сведения об авторе")
+    about = models.TextField(help_text="Введите сведения об авторе", verbose_name="Сведения об авторе", null=True)
     photo = models.ImageField(upload_to='images', help_text="Введите фото автора", verbose_name="Фото автора", null=True, blank=True)
     # date_of_death = models.DateField(help_text="Введите дату смерти", verbose_name="Дата смерти", null=True, blank=True)
 
@@ -64,10 +64,12 @@ class Book(models.Model):
                             verbose_name="ISBN книги")
     price = models.DecimalField(decimal_places=2, max_digits=7,
                             help_text="Введите цену книги",
-                            verbose_name="Цена (руб.)")
+                            verbose_name="Цена (руб.)",
+                            null=True)
     photo = models.ImageField(upload_to='images',
                             help_text="Введите изображение обложки",
-                            verbose_name="Изображение обложки")
+                            verbose_name="Изображение обложки",
+                            null=True)
 
     def display_author(self):
         return ', '.join([author.last_name for author in self.author.all()])

@@ -1,10 +1,12 @@
 from django.shortcuts import render 
-from django.http import HttpResponse 
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from .models import Book, Author, BookInstance, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from .forms import AuthorsForm
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from .forms import Form_add_author
 from django.urls import reverse
@@ -130,14 +132,14 @@ class BookCreate(CreateView):
  fields = '__all__'
  success_url = reverse_lazy('edit_books')
 
- class BookUpdate(UpdateView):
-     model = Book
-     fields =  '__all__'
-     success_url= reverse_lazy('edit_books')
+class BookUpdate(UpdateView):
+    model = Book
+    fields =  '__all__'
+    success_url= reverse_lazy('edit_books')
 
-     class BookDelete(DeleteView):
-         model = Book
-         success_url = reverse_lazy('edit_books')
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('edit_books')
 
 class BookListView(ListView):
     model = Book
@@ -201,10 +203,6 @@ def edit_authors(request):
  context = {'author': author}
  return render(request, "catalog/edit_authors.html", context)
 
-class Form_edit_author(forms.ModelForm):
- class Meta:
-    model = Author
-    fields = '__all__'
 
 def edit_author(request, id):
  author = Author.objects.get(id=id)
