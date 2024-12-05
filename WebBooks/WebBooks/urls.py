@@ -24,7 +24,13 @@ urlpatterns = [
     path('', views.index, name='index'), 
     path('books/', views.BookListView.as_view(), name='books-list'),
     path('books/<int:pk>/', views.BookDetailView.as_view(),
-        name='book-detail')
+        name='book-detail'),
+    path('authors/', views.AuthorListView.as_view(), name='authors-list'),
+    path('authors/<int:pk>/', views.AuthorDetailView.as_view(),
+        name='authors-detail'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+
     # path('admin/', admin.site.urls), 
     # path('authors_add/', views.authors_add, name='authors_add'),
     # path('edit1/<int:id>/', views.edit1, name='edit1'),
