@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'catalog'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -144,3 +145,9 @@ DATABASES['default'].update(db_from_env)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_REDIRECT_URL = '/'
+
+# настройки отправки e-mail
+''' это пробная отправка на консоль '''
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
