@@ -24,7 +24,7 @@ class AuthorsForm(forms.Form):
  initial=format(date.today()),
  widget=forms.widgets.DateInput(attrs={'type': 'date'}))
 
- class BookModelForm(ModelForm):
+ class BookModelForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'genre', 'language', 'author', 'summary', 'isbn']
+        fields = '__all__'
