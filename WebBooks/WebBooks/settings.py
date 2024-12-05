@@ -29,13 +29,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'catalog'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,6 +86,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': 'root',
+        'PASSWORD': '12344321',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -126,10 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/home/c/cc52289/newsite/public_html/static'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR/"static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR/"static"),
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOL = os.path.join(BASE_DIR,'media/')
@@ -149,8 +153,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL = '/'
 
 # настройки отправки e-mail
-''' это пробная отправка на консоль '''
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ''' это пробная отправка на консоль '''
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ''' это реальная отправка через smtp.gmail '''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
