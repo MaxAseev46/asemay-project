@@ -67,10 +67,10 @@ class Book(models.Model):
                             help_text="Введите изображение обложки",
                             verbose_name="Изображение обложки")
 
-    # def display_author(self):
-    #     return ', '.join([author.last_name for author in self.author.all()])
+    def display_author(self):
+        return ', '.join([author.last_name for author in self.author.all()])
     
-    # display_author.short_description = 'Авторы'
+    display_author.short_description = 'Авторы'
     
     def __str__(self):
         return self.title
@@ -104,6 +104,6 @@ class BookInstance(models.Model):
                                 verbose_name="Дата окончания статуса")
     class Meta:
         ordering = ["due_back"]
-        
+
     def __str__(self):
         return '%s %s %s' % (self.inv_nom, self.book, self.status)

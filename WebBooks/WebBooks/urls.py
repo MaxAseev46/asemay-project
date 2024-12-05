@@ -15,12 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path 
 from catalog import views
+from django.conf import settings
+from django.conf.urls.static import static
  
 urlpatterns = [     
-    path('', views.index, name='index'),     
-    path('admin/', admin.site.urls), 
+    path('', views.index, name='index'), 
+    path('books/', views.BookListView.as_view(), name='books-list'),
+    path('books/<int:pk>/', views.BookDetailView.as_view(),
+        name='book-detail')
+    # path('admin/', admin.site.urls), 
     # path('authors_add/', views.authors_add, name='authors_add'),
     # path('edit1/<int:id>/', views.edit1, name='edit1'),
     # path('create/', views.create, name='create'),
@@ -33,3 +38,8 @@ urlpatterns = [
     # re_path(r'^book/update/(?P<pk>\d+)$', views.BookUpdate.as_view(), name='book_update'),
     # re_path(r'^book/delete/(?P<pk>\d+)$', views.BookDelete.as_view(), name='book_delete'),
 ] 
+
+if settings.DEBUG:
+    if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
